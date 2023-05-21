@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main {
+    @apply flex flex-col p-4;
+}
+
+h1 {
+    @apply text-6xl font-light;
+}
+
+input {
+    @apply text-xs p-2 mb-1;
+}
+
+p {
+    @apply text-sm font-light mb-3;
+}
+
+.button-primary {
+    @apply text-xs px-4 py-2 bg-sky-600 text-gray-50 rounded-md;
+}
+
+.button-secondary {
+    @apply text-xs px-4 py-2 border-2 border-gray-400 text-gray-700 rounded-md;
+}
+
+.buttons {
+    @apply flex flex-row-reverse;
+}
+
+.tab-default {
+    @apply px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs;
+}
+
+.tab-active {
+    @apply bg-blue-600 text-gray-50;
+}
+
+.template-option {
+    @apply px-3 py-6 w-full mb-2 shadow rounded-md text-sm text-center hover:bg-gray-200 transition-colors duration-300;
+}

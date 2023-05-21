@@ -5,53 +5,35 @@
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
 
 	//import some Svelte Figma UI components
-	import { Button, Input, Label, SelectMenu } from 'figma-plugin-ds-svelte';
+	import { Button, Input, Label, SelectMenu} from 'figma-plugin-ds-svelte';
+	import "./PluginUI.css";
+	import QuickStart from './components/QuickStart.svelte';
+	import Custom from './components/Custom.svelte';
 
-	//menu items, this is an array of objects to populate to our select menus
-	let menuItems = [
-        { 'value': 'rectangle', 'label': 'Rectangle', 'group': null, 'selected': false },
-        { 'value': 'triangle', 'label': 'Triangle ', 'group': null, 'selected': false },
-        { 'value': 'circle', 'label': 'Circle', 'group': null, 'selected': false }
-	];
 
-	var disabled = true;
-	var selectedShape;
-	var count = 5;
+	let activeTab = 'QuickStart';
 
-	//this is a reactive variable that will return false when a value is selected from
-	//the select menu, its value is bound to the primary buttons disabled prop
-	$: disabled = selectedShape === null;
-
-	function createShapes() {
-		parent.postMessage({ pluginMessage: { 
-			'type': 'create-shapes', 
-			'count': count,
-			'shape': selectedShape.value
-		} }, '*');
+	function handleClick(e){
+		let id = e.target.id;
+		console.log("You selected " + id + " template");
 	}
-
-	function cancel() {
-		parent.postMessage({ pluginMessage: { 'type': 'cancel' } }, '*')
-	}
+	
 
 </script>
 
 
-<div class="wrapper p-xxsmall">
+<div class="main">
+	<!-- <div class="mb-4">
+		<button class="tab-default tab-active" on:click={() => activeTab = 'QuickStart'}>Quick start</button>
+		<button class="tab-default" on:click={() => activeTab = 'Custom'}>Custom</button>
+	</div> -->
 
-	<Label>Shape</Label>
-	<SelectMenu bind:menuItems={menuItems} bind:value={selectedShape} class="mb-xxsmall"/>
-	
-	<Label>Count</Label>
-	<Input iconText="#" bind:value={count} class="mb-xxsmall"/>
-
-	<div class="flex p-xxsmall mb-xsmall">
-	<Button on:click={cancel} variant="secondary" class="mr-xsmall">Cancel</Button>
-	<Button on:click={createShapes} bind:disabled={disabled}>Create shapes</Button>
-	</div>
-
+	<!-- {#if activeTab === 'QuickStart'} -->
+		<QuickStart />
+	<!-- {:else if activeTab === 'Custom'}
+		<Custom />
+	{/if} -->
 </div>
-
 
 <style>
 
