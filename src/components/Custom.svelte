@@ -2,7 +2,7 @@
     import { Button, Input, Label, SelectMenu} from 'figma-plugin-ds-svelte';
 </script>
 
-<p class="text-xs">Select a template below to get started.</p>
+<p class="text-xs font-semibold">Select a template below to get started.</p>
 
 <input type="text" value="⭐️ Cover"/>
 <input type="text" value="🧑🏻‍💻 Development Ready"/>

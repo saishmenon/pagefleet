@@ -16,12 +16,19 @@
             }
         }
     }
+
+    function createPages(e){
+        parent.postMessage({ pluginMessage: {
+            'type' : 'create-pages',
+            'template' : e.target.id,
+        }},'*');
+    }
 </script>
 
-<p class="text-xs mb-4">Select a template below to get started.</p>
+<p class="text-xs mb-4 font-medium">Select a template below to get started.</p>
 	
 <div class="flex flex-wrap">
-    <button on:click={handleClick} id="simple" class="template-option">Simple</button>
-    <button on:click={handleClick} id="intermediate" class="template-option">Intermediate</button>
-    <button on:click={handleClick} id="advanced" class="template-option">Advanced</button>
+    <button on:click={createPages} id="simple" class="template-option">Simple</button>
+    <button on:click={createPages} id="intermediate" class="template-option">Intermediate</button>
+    <button on:click={createPages} id="advanced" class="template-option">Advanced</button>
 </div>
