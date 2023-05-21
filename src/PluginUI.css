@@ -11,7 +11,7 @@ h1 {
 }
 
 input {
-    @apply text-xs p-2 mb-1;
+    @apply text-xs p-2 mb-1 w-full;
 }
 
 p {
@@ -27,7 +27,7 @@ p {
 }
 
 .buttons {
-    @apply flex flex-row-reverse;
+    @apply flex flex-row-reverse mt-2;
 }
 
 .tab-default {

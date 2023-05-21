@@ -1,6 +1,6 @@
 import pages from "./data/pages";
 
-figma.showUI(__html__, { themeColors: true, width: 256, height: 300 });
+figma.showUI(__html__, { themeColors: true, width: 288, height: 352 });
 
 figma.ui.onmessage = (msg) => {
     if (msg.type === "create-pages") {
@@ -30,6 +30,13 @@ figma.ui.onmessage = (msg) => {
                 "✅ Your Advanced project has been setup successfully!"
             );
         }
+    } else if (msg.type === "create-custom-pages") {
+        for (let page of msg.customPages.slice(1)) {
+            let newPage = figma.createPage();
+            newPage.name = page;
+        }
+        figma.currentPage.name = msg.customPages[0];
+        figma.notify("✅ Pages created!");
     }
     figma.closePlugin();
 };

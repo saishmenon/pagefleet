@@ -25,7 +25,7 @@
     }
 </script>
 
-<p class="text-xs mb-4 font-medium">Select a template below to get started.</p>
+<p class="text-xs mb-4">Select a template below to get started.</p>
 	
 <div class="flex flex-wrap">
     <button on:click={createPages} id="simple" class="template-option">Simple</button>

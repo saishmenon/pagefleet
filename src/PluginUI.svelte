@@ -11,7 +11,7 @@
 	import Custom from './components/Custom.svelte';
 
 
-	let activeTab = 'QuickStart';
+	let activeTab = 'Custom';
 
 	function handleClick(e){
 		let id = e.target.id;
@@ -23,16 +23,16 @@
 
 
 <div class="main">
-	<!-- <div class="mb-4">
-		<button class="tab-default tab-active" on:click={() => activeTab = 'QuickStart'}>Quick start</button>
-		<button class="tab-default" on:click={() => activeTab = 'Custom'}>Custom</button>
-	</div> -->
+	<div class="mb-4">
+		<button class="tab-default" class:tab-active={activeTab === 'QuickStart'} on:click={() => activeTab = 'QuickStart'}>Quick start</button>
+		<button class="tab-default" class:tab-active={activeTab === 'Custom'} on:click={() => activeTab = 'Custom'}>Custom</button>
+	</div>
 
-	<!-- {#if activeTab === 'QuickStart'} -->
+	{#if activeTab === 'QuickStart'}
 		<QuickStart />
-	<!-- {:else if activeTab === 'Custom'}
+	{:else if activeTab === 'Custom'}
 		<Custom />
-	{/if} -->
+	{/if}
 </div>
 
 <style>
