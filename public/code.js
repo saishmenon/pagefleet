@@ -95,4 +95,3 @@ figma.ui.onmessage = (msg) => {
     }
     figma.closePlugin();
 };
-//# sourceMappingURL=code.js.map

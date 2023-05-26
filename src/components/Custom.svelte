@@ -15,6 +15,12 @@
 
     function handleChange(){
         let formField = document.getElementById('formFields');
+        let fields = [];
+
+        // Function to clear out existing fields before adding pages from the new template selection
+        while(formField.firstChild){
+            formField.removeChild(formField.firstChild);
+        }
 
         if(selectedTemplate.value === 'simple'){
             for(let page of pages.simple){
@@ -22,7 +28,7 @@
                 mi.setAttribute('type', 'text');
                 mi.setAttribute('value', page);
                 mi.setAttribute('name', 'array[]');
-                formFields.appendChild(mi);
+                fields.push(mi);
             }
         }else if(selectedTemplate.value === 'intermediate'){
             for(let page of pages.intermediate){
@@ -30,7 +36,7 @@
                 mi.setAttribute('type', 'text');
                 mi.setAttribute('value', page);
                 mi.setAttribute('name', 'array[]');
-                formFields.appendChild(mi);
+                fields.push(mi);
             }
         }else if(selectedTemplate.value === 'advanced'){
             for(let page of pages.advanced){
@@ -38,16 +44,28 @@
                 mi.setAttribute('type', 'text');
                 mi.setAttribute('value', page);
                 mi.setAttribute('name', 'array[]');
-                formFields.appendChild(mi);
+                fields.push(mi);
             }
+        }
+        for(let field of fields){
+            console.log(field);
+            formFields.appendChild(field);
         }
     }
 
+    //Post function send the data to the TS file
     function generateCustomPages(){
+        
+        // This variable is an array to collect all the custom pages from the form 
         let input = document.getElementsByName('array[]');
+        
+        //Loop to go through all the input fields and add them to the input array. This is done here so that if any fields were edited that page name override is taken to generate the pages.
         for (let i = 0; i < input.length; i++) {
             let a = input[i];
-            customPages.push(a.value);
+            // Checking for empty page names. If any of the input fields are empty, we'll just ignore those values and not create those pages.
+            if(a.value !== ''){
+                customPages.push(a.value);
+            }
         }
 
         parent.postMessage({ pluginMessage: {
@@ -75,7 +93,7 @@
         <Button on:click={generateCustomPages} class="primary" bind:disabled={disabled}>Generate pages</Button>
     </div>
     <div class="mr-2">
-        <Button class="secondary" bind:disabled={disabled}>Reset</Button>
+        <Button on:click={handleChange} class="secondary" bind:disabled={disabled}>Reset</Button>
     </div>
 </div>
 
