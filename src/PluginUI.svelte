@@ -23,7 +23,7 @@
 
 
 <div class="main">
-	<div class="mb-4">
+	<div class="mb-6">
 		<button class="tab-default" class:tab-active={activeTab === 'Quickstart'} on:click={() => activeTab = 'Quickstart'}>Quick start</button>
 		<button class="tab-default" class:tab-active={activeTab === 'Custom'} on:click={() => activeTab = 'Custom'}>Custom</button>
 	</div>
