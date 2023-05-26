@@ -1,61 +1,75 @@
 <script>
+    //import some Svelte Figma UI components
     import { Button, Input, Label, SelectMenu} from 'figma-plugin-ds-svelte';
+    //import data for page names
     import pages from '../data/pages';
 
+    //menu items, this is an array of objects to populate to our select menus
     let menuItems = [
         { 'value': 'simple', 'label': 'Simple', 'selected': false },
         { 'value': 'intermediate', 'label': 'Intermediate ', 'selected': false },
         { 'value': 'advanced', 'label': 'Advanced', 'selected': false }
 	];
 
+    // Store the value of the selected template
     let selectedTemplate;
-    let customPages = [];
+    // Store the names of all the new pages that needs to be created.
+    let customPages = []; 
+    // Store the names of pages in selected template
+    let loadedTemplateFields = []; 
 
+    //this is a reactive variable that will return false when a value is selected from
+	//the select menu, its value is bound to the primary buttons disabled prop
     $: disabled = selectedTemplate === null;
 
-    function handleChange(){
-        let formField = document.getElementById('formFields');
-        let fields = [];
+    // Function to dynamically create input fields
+    function createField(value){
+        let mi = document.createElement("input");
+        mi.setAttribute('type', 'text');
+        mi.setAttribute('value', value);
+        mi.setAttribute('name', 'array[]');
+        loadedTemplateFields.push(mi);
+    }
 
-        // Function to clear out existing fields before adding pages from the new template selection
-        while(formField.firstChild){
-            formField.removeChild(formField.firstChild);
-        }
+    // Function to clear out existing fields before adding pages from the new template selection
+    function clearFields(id){
+        id.innerHTML = '';
+    }
+
+    // Function to handle change in in dropdown selection
+    function handleChange(){
+        const id = document.getElementById('formFields');
+        
+        // Clearing out the fields to make room for new ones
+        clearFields(id);
+        // Emptying loadedTemplateFields array to remove previous values
+        loadedTemplateFields = [];
+        // console.log(formField.innerHTML);
+        // formField.innerHTML = '';
+        // console.log('cleared');
 
         if(selectedTemplate.value === 'simple'){
             for(let page of pages.simple){
-                let mi = document.createElement("input");
-                mi.setAttribute('type', 'text');
-                mi.setAttribute('value', page);
-                mi.setAttribute('name', 'array[]');
-                fields.push(mi);
+                createField(page);
             }
         }else if(selectedTemplate.value === 'intermediate'){
             for(let page of pages.intermediate){
-                let mi = document.createElement("input");
-                mi.setAttribute('type', 'text');
-                mi.setAttribute('value', page);
-                mi.setAttribute('name', 'array[]');
-                fields.push(mi);
+                createField(page);
             }
         }else if(selectedTemplate.value === 'advanced'){
             for(let page of pages.advanced){
-                let mi = document.createElement("input");
-                mi.setAttribute('type', 'text');
-                mi.setAttribute('value', page);
-                mi.setAttribute('name', 'array[]');
-                fields.push(mi);
+                createField(page);
             }
         }
-        for(let field of fields){
-            console.log(field);
-            formFields.appendChild(field);
+
+        //add input fields with the pages names for the current selected template
+        for(let field of loadedTemplateFields){
+            id.appendChild(field);
         }
     }
 
-    //Post function send the data to the TS file
+    // Function to generate custom pages
     function generateCustomPages(){
-        
         // This variable is an array to collect all the custom pages from the form 
         let input = document.getElementsByName('array[]');
         
@@ -68,6 +82,7 @@
             }
         }
 
+        //Post function to send the data to the TS file
         parent.postMessage({ pluginMessage: {
             'type' : 'create-custom-pages',
             customPages,

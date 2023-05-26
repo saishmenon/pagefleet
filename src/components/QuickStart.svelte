@@ -1,22 +1,7 @@
 <script>
     import pages from '../data/pages.js';
 
-    function handleClick(e){
-        if(e.target.id === "simple"){
-            for(let i=0; i<pages.simple.length; ++i){
-                console.log(pages.simple[i]);
-            }
-        }else if(e.target.id === "intermediate"){
-            for(let i=0; i<pages.intermediate.length; ++i){
-                console.log(pages.intermediate[i]);
-            }
-        }else if(e.target.id === "advanced"){
-            for(let i=0; i<pages.advanced.length; ++i){
-                console.log(pages.advanced[i]);
-            }
-        }
-    }
-
+    // Function to send the template selected to the TS file
     function createPages(e){
         parent.postMessage({ pluginMessage: {
             'type' : 'create-pages',
