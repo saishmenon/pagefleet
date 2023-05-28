@@ -1,5 +1,5 @@
 {
-    "name": "swift-pages",
+    "name": "pagefleet",
     "version": "1.0.4",
     "scripts": {
         "build": "rollup -c",
