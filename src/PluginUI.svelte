@@ -4,11 +4,10 @@
 	//contains Figma color vars, spacing vars, utility classes and more
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
 
-	//import some Svelte Figma UI components
-	import { Button, Input, Label, SelectMenu} from 'figma-plugin-ds-svelte';
 	import "./PluginUI.css";
 	import QuickStart from './components/QuickStart.svelte';
 	import Custom from './components/Custom.svelte';
+	import Add from './components/Add.svelte';
 
 
 	let activeTab = 'Quickstart';
@@ -23,15 +22,18 @@
 
 
 <div class="main">
-	<div class="mb-6">
+	<div class="mb-4">
 		<button class="tab-default" class:tab-active={activeTab === 'Quickstart'} on:click={() => activeTab = 'Quickstart'}>Quick start</button>
 		<button class="tab-default" class:tab-active={activeTab === 'Custom'} on:click={() => activeTab = 'Custom'}>Custom</button>
+		<button class="tab-default" class:tab-active={activeTab === 'Add'} on:click={() => activeTab = 'Add'}>Add</button>
 	</div>
 
 	{#if activeTab === 'Quickstart'}
 		<QuickStart />
 	{:else if activeTab === 'Custom'}
 		<Custom />
+	{:else if activeTab === 'Add'}
+		<Add />
 	{/if}
 </div>
 
