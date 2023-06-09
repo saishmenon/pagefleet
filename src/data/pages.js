@@ -6,6 +6,7 @@ const pages = {
         "🌍 Designs",
         "🧩 Components",
         "🧪 Playground",
+        "🗑️ Design Junkyard",
     ],
     intermediate: [
         "⭐️ Cover",
@@ -22,6 +23,8 @@ const pages = {
         "📑 Templates & Resources",
         "----------------------------------",
         "🧪 Playground",
+        "----------------------------------",
+        "🗑️ Design Junkyard",
     ],
     advanced: [
         "⭐️ Cover",
@@ -52,6 +55,8 @@ const pages = {
         "📷 Images & Illustrations",
         "----------------------------------",
         "🧪 Playground",
+        "----------------------------------",
+        "🗑️ Design Junkyard",
     ],
 };
 

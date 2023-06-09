@@ -8,6 +8,7 @@ const pages = {
         "🌍 Designs",
         "🧩 Components",
         "🧪 Playground",
+        "🗑️ Design Junkyard",
     ],
     intermediate: [
         "⭐️ Cover",
@@ -24,6 +25,8 @@ const pages = {
         "📑 Templates & Resources",
         "----------------------------------",
         "🧪 Playground",
+        "----------------------------------",
+        "🗑️ Design Junkyard",
     ],
     advanced: [
         "⭐️ Cover",
@@ -54,6 +57,8 @@ const pages = {
         "📷 Images & Illustrations",
         "----------------------------------",
         "🧪 Playground",
+        "----------------------------------",
+        "🗑️ Design Junkyard",
     ],
 };
 
@@ -95,3 +100,4 @@ figma.ui.onmessage = (msg) => {
     }
     figma.closePlugin();
 };
+//# sourceMappingURL=code.js.map
