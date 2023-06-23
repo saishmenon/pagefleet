@@ -3,9 +3,6 @@ import createCustomPages from "./scripts/createCustomPages";
 import createPages from "./scripts/createPages";
 import saveTemplate from "./scripts/saveTemplate";
 
-// show the UI
-figma.showUI(__html__, { themeColors: true, width: 288, height: 372 });
-
 // receives message from UI
 figma.ui.onmessage = (msg) => {
     switch (msg.type) {
@@ -22,13 +19,27 @@ figma.ui.onmessage = (msg) => {
             saveTemplate(msg.template);
             break;
     }
-
-    // if (msg.type === "create-pages") {
-    //     createPages(msg.template);
-    // } else if (msg.type === "create-custom-pages") {
-    //     createCustomPages(msg.customPages);
-    // } else if (msg.type === "save-template") {
-    //     saveTemplate(msg.template);
-    // }
     // figma.closePlugin();
 };
+
+// show the UI
+figma.showUI(__html__, { themeColors: true, width: 288, height: 372 });
+
+//INITIALIZE PLUGIN
+//get templates from client storage
+(async () => {
+    try {
+        let localStorageString = await figma.clientStorage.getAsync(
+            "templates"
+        );
+        console.log("Successfully retrieved templates from client storage");
+        //send a message to the UI with the credentials storred in the client
+        figma.ui.postMessage({
+            type: "load-saved-templates",
+            status: true,
+            localStorageString: localStorageString,
+        });
+    } catch (err) {
+        console.log(err);
+    }
+})();

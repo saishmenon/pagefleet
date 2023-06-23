@@ -1,15 +1,23 @@
 <script>
-    import TemplateStore from "../store/TemplateStore";
+    import {
+        TemplateStore,
+        dataFromLocalStorage,
+    } from "../store/TemplateStore.js";
 
     let templates = [];
-    let stringifiedTemplates;
+    let templateString;
 
     TemplateStore.subscribe((data) => {
         templates = data;
-        stringifiedTemplates = JSON.stringify(templates);
+        console.log(templates);
     });
 
-    // console.log(`stringified Templates: ${stringifiedTemplates}`);
+    // window.addEventListener("message", (event) => {
+    //     if (event.data.pluginMessage.type === "load-saved-templates") {
+    //         templateString = event.data.pluginMessage.localStorageString;
+    //     }
+    //     templates = [...templates, JSON.parse(templateString)];
+    // });
 
     // Function to send the template selected to the TS file
     function createPages(e) {

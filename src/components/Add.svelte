@@ -1,7 +1,7 @@
 <script>
     //import some Svelte Figma UI components
     import { Button, Input, Label, Textarea } from "figma-plugin-ds-svelte";
-    import TemplateStore from "../store/TemplateStore";
+    import { TemplateStore } from "../store/TemplateStore";
 
     let templateName;
     let templatePages;
@@ -12,13 +12,36 @@
             pages: templatePages,
         };
 
+        // let template = [
+        //     {
+        //         id: 1,
+        //         name: "Book A",
+        //         pages: "Introduction, Chapter 1, Conclusion",
+        //     },
+        //     {
+        //         id: 2,
+        //         name: "Book B",
+        //         pages: "Prologue, Chapter 1, Epilogue",
+        //     },
+        //     {
+        //         id: 3,
+        //         name: "Book C",
+        //         pages: "Preface, Chapter 1, Appendix",
+        //     },
+        //     {
+        //         id: 4,
+        //         name: "Book D",
+        //         pages: "Foreword, Chapter 1, Glossary",
+        //     },
+        // ];
+
         TemplateStore.update((TemplateStore) => [...TemplateStore, template]);
 
         parent.postMessage(
             {
                 pluginMessage: {
                     type: "save-template",
-                    template: template,
+                    template: JSON.stringify(template),
                 },
             },
             "*"

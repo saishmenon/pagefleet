@@ -1,5 +1,30 @@
 'use strict';
 
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
 function createCustomPages(customPages) {
     for (let page of customPages.slice(1)) {
         let newPage = figma.createPage();
@@ -97,6 +122,16 @@ function createPages(template) {
 
 function saveTemplate(template) {
     console.log(template);
+    // (async () => {
+    //     try {
+    //         await figma.clientStorage.setAsync("templates", template);
+    //         figma.notify("Template saved!");
+    //     } catch (err) {
+    //         figma.notify(
+    //             "There was an issue saving your settings. Please try again."
+    //         );
+    //     }
+    // })();
     // figma.clientStorage
     //         .setAsync("templates", msg.template)
     //         .then(() => {
@@ -114,11 +149,7 @@ function saveTemplate(template) {
     //         console.error("Error retrieving data:", error);
     //     });
 }
-//# sourceMappingURL=saveTemplate.js.map
 
-//imports
-// show the UI
-figma.showUI(__html__, { themeColors: true, width: 288, height: 372 });
 // receives message from UI
 figma.ui.onmessage = (msg) => {
     switch (msg.type) {
@@ -135,13 +166,25 @@ figma.ui.onmessage = (msg) => {
             saveTemplate(msg.template);
             break;
     }
-    // if (msg.type === "create-pages") {
-    //     createPages(msg.template);
-    // } else if (msg.type === "create-custom-pages") {
-    //     createCustomPages(msg.customPages);
-    // } else if (msg.type === "save-template") {
-    //     saveTemplate(msg.template);
-    // }
     // figma.closePlugin();
 };
+// show the UI
+figma.showUI(__html__, { themeColors: true, width: 288, height: 372 });
+//INITIALIZE PLUGIN
+//get templates from client storage
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let localStorageString = yield figma.clientStorage.getAsync("templates");
+        console.log("Successfully retrieved templates from client storage");
+        //send a message to the UI with the credentials storred in the client
+        figma.ui.postMessage({
+            type: "load-saved-templates",
+            status: true,
+            localStorageString: localStorageString,
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}))();
 //# sourceMappingURL=code.js.map
