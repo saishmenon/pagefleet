@@ -62,7 +62,7 @@ const pages = {
     ],
 };
 
-figma.showUI(__html__, { themeColors: true, width: 288, height: 352 });
+figma.showUI(__html__, { themeColors: true, width: 240, height: 352 });
 figma.ui.onmessage = (msg) => {
     if (msg.type === "create-pages") {
         if (msg.template === "simple") {
@@ -100,4 +100,3 @@ figma.ui.onmessage = (msg) => {
     }
     figma.closePlugin();
 };
-//# sourceMappingURL=code.js.map

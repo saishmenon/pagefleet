@@ -9,6 +9,7 @@ import typescript from "rollup-plugin-typescript";
 /* Post CSS */
 import postcss from "rollup-plugin-postcss";
 import cssnano from "cssnano";
+import tailwindcss from "tailwindcss";
 
 /* Inline to single html */
 import htmlBundle from "rollup-plugin-html-bundle";
@@ -44,7 +45,7 @@ export default [
             svg(),
             postcss({
                 extensions: [".css"],
-                plugins: [cssnano()],
+                plugins: [cssnano(), tailwindcss()],
             }),
             htmlBundle({
                 template: "src/template.html",
