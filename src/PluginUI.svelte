@@ -9,7 +9,7 @@
     import QuickStart from "./components/QuickStart.svelte";
     import TabBar from "./components/TabBar.svelte";
     import { mainSection } from "./scripts/stores.js";
-    import Custom from "./components/Custom.svelte";
+    import New from "./components/New.svelte";
 
     function handleClick(e) {
         let id = e.target.id;
@@ -22,8 +22,8 @@
     <div class="main">
         {#if $mainSection === "quickstart"}
             <QuickStart />
-        {:else if $mainSection === "custom"}
-            <Custom />
+        {:else if $mainSection === "new"}
+            <New />
         {/if}
     </div>
 </div>

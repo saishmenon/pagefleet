@@ -24,10 +24,10 @@
         <span
             class="tab"
             tabNumber="2"
-            on:click={() => mainSection.set("instant")}
-            class:active={$mainSection === "instant"}
+            on:click={() => mainSection.set("new")}
+            class:active={$mainSection === "new"}
         >
-            Instant
+            New
         </span>
     </div>
 </div>

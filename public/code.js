@@ -62,7 +62,7 @@ const pages = {
     ],
 };
 
-figma.showUI(__html__, { themeColors: true, width: 240, height: 352 });
+figma.showUI(__html__, { themeColors: true, width: 240, height: 400 });
 figma.ui.onmessage = (msg) => {
     if (msg.type === "create-pages") {
         if (msg.template === "simple") {
@@ -91,12 +91,17 @@ figma.ui.onmessage = (msg) => {
         }
     }
     else if (msg.type === "create-custom-pages") {
-        for (let page of msg.customPages.slice(1)) {
-            let newPage = figma.createPage();
-            newPage.name = page;
+        if (msg.customPages.length === 0) {
+            figma.notify("❌ Please add pages to the list before creating them!");
         }
-        figma.currentPage.name = msg.customPages[0];
-        figma.notify("✅ Pages created!");
+        else {
+            for (let page of msg.customPages.slice(1)) {
+                let newPage = figma.createPage();
+                newPage.name = page;
+            }
+            figma.currentPage.name = msg.customPages[0];
+            figma.notify("✅ Pages created!");
+        }
     }
     figma.closePlugin();
 };

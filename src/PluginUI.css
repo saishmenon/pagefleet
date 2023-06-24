@@ -41,3 +41,15 @@ p {
 .template-option {
     @apply px-3 py-6 w-full mb-2 shadow rounded-md text-sm text-center hover:bg-gray-200 transition-all;
 }
+
+.template-option-simple {
+    @apply px-3 py-8 w-full mb-2 shadow rounded-md text-sm text-white text-center bg-green-500 hover:bg-green-600 transition-all;
+}
+
+.template-option-intermediate {
+    @apply px-3 py-8 w-full mb-2 shadow rounded-md text-sm text-white text-center bg-yellow-500 hover:bg-yellow-600 transition-all;
+}
+
+.template-option-advanced {
+    @apply px-3 py-8 w-full mb-2 shadow rounded-md text-sm text-white text-center bg-red-500 hover:bg-red-600 transition-all;
+}
