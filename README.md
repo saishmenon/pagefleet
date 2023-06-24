@@ -19,8 +19,6 @@ If you wish to customize one of the templates, navigate to the 'Custom' tab and 
 
 #### Limitations
 
-- Please note that Pagefleet's functionality is currently limited to the available prebuilt templates. Therefore, for highly specialized projects, some manual editing might still be necessary post-generation.
-- While creating custom pages, you can’t add more pages in this version. This functionality is in the works and will be released in the future.
-- If you wish to delete any of the pages while generating custom pages, in the current user experience you should leave the textfield empty and that page will be skipped.
+- If you are editing pre-defined template, you'll need to delete that value from the textarea before generating the pages.
 - If you are running the plugin on a fresh Figma file, it will rename the current page you're at with the first name in the template.
 - If you already have a few pages setup, running the plugin will rename only the current page and append the rest of the pages below it.
