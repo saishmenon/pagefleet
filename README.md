@@ -2,6 +2,9 @@
 
 [Install in Figma](https://www.figma.com/community/plugin/1243840737950472379)
 
+![plugin-promotional-banner](https://github.com/saishmenon/pagefleet/assets/59984756/c1547449-28bc-4a1a-b1c1-136ad0fe6ecd)
+
+
 ### The Purpose
 Pagefleet is built to help you save time by instantly generating all necessary pages for your design project instead of having to create them one by one. It comes equipped with three diverse templates that have been tailored to suit small, medium, and large design projects. Whether you're working on a website design, mobile app or a robust e-commerce site, Pagefleet has got you covered. To add to its versatility, it includes a custom feature that allows you reuse and edit any of the prebuilt templates to match your requirements.
 
