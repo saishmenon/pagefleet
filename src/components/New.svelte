@@ -57,11 +57,11 @@
   // Function to generate custom pages
   function generateCustomPages() {
     let input = document.getElementById("pageslist");
+    //Copy the value of the textfield to the variable pageList
     pageList = input.value;
 
-    console.log(pageList);
+    //Since pageList is a string, convert it to an array
     customPages = stringToArray(pageList);
-    console.log(customPages);
 
     //Post function to send the data to the TS file
     parent.postMessage(

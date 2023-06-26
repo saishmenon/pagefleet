@@ -1,6 +1,4 @@
 <script>
-  import pages from "../data/pages.js";
-
   //import images
   import Simple from "../assets/Simple";
   import Intermediate from "../assets/Intermediate";
